@@ -4,15 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "16ab69688ab43f4a",
+        "id": "4a20d045a00855d5",
         "type": "tabs",
         "children": [
           {
-            "id": "e4a1d399fb3b64c8",
+            "id": "36b381b6f8181404",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "canvas",
+              "state": {
+                "file": "DB Diagram.canvas",
+                "viewState": {
+                  "x": 165.55811609331437,
+                  "y": 444.96083298034273,
+                  "zoom": -0.8333333333333333
+                }
+              }
             }
           }
         ]
@@ -81,6 +88,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "DB Diagram.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +105,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "DB Diagram.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +127,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "DB Diagram.canvas"
+              }
             }
           }
         ]
@@ -138,6 +149,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "e4a1d399fb3b64c8",
-  "lastOpenFiles": []
+  "active": "36b381b6f8181404",
+  "lastOpenFiles": [
+    "DB Diagram.canvas",
+    "Untitled.md"
+  ]
 }

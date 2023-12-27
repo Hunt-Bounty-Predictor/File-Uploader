@@ -1,0 +1,18 @@
+{
+	"nodes":[
+		{"id":"1c39f286ae10d91b","type":"group","x":140,"y":20,"width":695,"height":620,"color":"3","label":"User Data"},
+		{"id":"9eff4bcc655e278e","type":"group","x":-595,"y":20,"width":590,"height":720,"color":"5","label":"Constants"},
+		{"id":"79f71510239b9bef","type":"text","text":"#  Town\nmap: [Map]\nid: int\nname: str\nx: int\ny: int","x":-575,"y":460,"width":250,"height":260,"color":"6"},
+		{"id":"6cd9cd1ee306bae2","type":"text","text":"# Extract\nmap: [Map]\nid: int\nx: int\ny: int","x":-275,"y":460,"width":250,"height":260,"color":"6"},
+		{"id":"68e7f25ba9820d5a","type":"text","text":"# Map\nid: int\nname: str\ntowns: List[town]\nextracts: List[town]","x":-425,"y":40,"width":250,"height":240,"color":"6"},
+		{"id":"8b5e1619f7ec34be","type":"text","text":"# User\nid: int\nname: str [Unique]\nimages: List[Image]\n","x":160,"y":40,"width":250,"height":240,"color":"1"},
+		{"id":"4e878b40cdabb15c","type":"text","text":"# Image\nint: id\nuser: User\npath: str\nphase: Phase | None","x":530,"y":40,"width":250,"height":240,"color":"1"},
+		{"id":"b54aa610aafdeebb","type":"text","text":"# Phase\nint: id\nphaseNum: int\nmap: Map\ntowns: String(16) # bitString","x":495,"y":400,"width":320,"height":220,"color":"1"}
+	],
+	"edges":[
+		{"id":"d7467b8390a55f3e","fromNode":"68e7f25ba9820d5a","fromSide":"bottom","toNode":"79f71510239b9bef","toSide":"top"},
+		{"id":"9b1dc18681aa4d73","fromNode":"68e7f25ba9820d5a","fromSide":"bottom","toNode":"6cd9cd1ee306bae2","toSide":"top"},
+		{"id":"c4bccd804c00187f","fromNode":"8b5e1619f7ec34be","fromSide":"right","toNode":"4e878b40cdabb15c","toSide":"left"},
+		{"id":"77db2a78c5f217c0","fromNode":"4e878b40cdabb15c","fromSide":"bottom","toNode":"b54aa610aafdeebb","toSide":"top"}
+	]
+}

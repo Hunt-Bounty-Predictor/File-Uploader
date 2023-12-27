@@ -307,7 +307,7 @@ def makeContourShape(arr, contours):
     mask = np.zeros(arr.shape[:2], dtype=np.uint8)
     
     for contour in contours:
-        cv2.drawContours(mask, [contour], -1, (255), thickness=10)
+        cv2.drawContours(mask, [contour], -1, (255), thickness=7)
         
     unified_contours, hierarchy = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     
@@ -338,9 +338,11 @@ def getMaskedMap(mapArr):
 """Possibly switch to smaller squares to avoid when boss is being banished"""
 
 if __name__ == "__main__":
-    image = getMap(r'E:\replays\Hunt Showdown\Map\testing\images\Lawson 2C.jpg')
+    image = getMap(r'E:\replays\Hunt Showdown\Map\CB.png')
     
     maskedImage = getMaskedMap(image)   
+    
+    showImage(maskedImage)
     
     for compound in LAWSON_POINTS:
         if isPointInMask(maskedImage, LAWSON_POINTS[compound]):
