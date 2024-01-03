@@ -23,7 +23,7 @@ class FileSender:
         
     def getAPIKey(self) -> str:
         response = r.get("http://localhost:8000/APIKey")
-        print(response.json())
+        #print(response.json())
         self.session.headers.update({"access_token": response.json()['APIKey']})
     
         #return response.json()['APIKey']
@@ -33,9 +33,9 @@ class FileSender:
             
             files = {'file': file}
             response = self.session.post(BASE_URL + "upload", files=files, timeout=5)
-
             
-            return response.json()['status']
+            if response.status_code == 200:
+                print("File uploaded successfully.")
         
     def getUserInfo(self):
         
@@ -49,6 +49,15 @@ class FileSender:
             userInfo = json.load(open('userInfo.json'))
             
             name = userInfo['name']
+            
+            response = self.session.post(BASE_URL + "login", json={'username': name}, timeout=5)
+            
+            if response.status_code == 500:
+                raise FileNotFoundError
+            
+            else :
+                print("Login successfull.")
+                
             
         except FileNotFoundError:
             response = getYesNo("Have you created an account before?")
@@ -70,7 +79,7 @@ class FileSender:
                         break
                     
                     else:
-                        print(response.json()['detail']['message'])
+                        print(response.json()['detail']['message'], "Please try again.")
                 
             elif response == True:
                 while True:
@@ -85,14 +94,24 @@ class FileSender:
                         break
                     
                     else:
-                        print(response.json()['detail']['message'])
+                        print(response.json()['detail']['message'], "Please try again.")
                     
                     #print("Invalid username. Please try again.")
+                    
+            json.dump({"name": name}, open('userInfo.json', 'w'))
                 
         self.name = name
+        
+        self.session.headers.update({"Username": name})
             
                 
         
 f = FileSender()
 
-#f.sendFile(r'E:\replays\Hunt Showdown\Map\CB.png')
+input("First File")
+
+f.sendFile(r'/mnt/e/replays/Hunt Showdown/Map/testing/images/Lawson0C.jpg')
+
+input("Next file")
+
+f.sendFile(r'/mnt/e/replays/Hunt Showdown/Map/testing/images/Lawson 1C.jpg')
