@@ -1,3 +1,4 @@
+import io
 from pynput import keyboard
 import pyautogui as pg
 import pygetwindow as gw
@@ -49,12 +50,20 @@ def takeHuntScreenshot(name: str):
     screenshot = pg.screenshot(region=(x, y, width, height))
 
     # Save the screenshot
-    screenshot.save(name)
+    return screenshot
     
 def getCurrTime():
     currentTime = datetime.datetime.now()
     
     return currentTime.strftime("%H:%M:%S")
+
+def getScreenshotBytes(screenshot):
+    byteObj = io.BytesIO()
+    screenshot.save(byteObj, format='JPEG')
+    byteObj.seek(0)
+    
+    return byteObj
+
 
 
     

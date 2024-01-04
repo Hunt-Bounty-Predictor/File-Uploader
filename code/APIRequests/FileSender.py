@@ -1,5 +1,13 @@
 import requests as r
 
+from screenShotUtils import takeHuntScreenshot, getScreenshotBytes
+import io
+
+from pynput import keyboard
+import pyautogui as pg
+import pygetwindow as gw
+import datetime
+
 def getYesNo(prompt: str) -> bool:
     prompt = prompt + " (y/n): "
     while True:
@@ -36,6 +44,20 @@ class FileSender:
             
             if response.status_code == 200:
                 print("File uploaded successfully.")
+                
+            else:
+                print("File upload failed.")
+                
+    def sendScreenshot(self, screenshot : io.BytesIO):
+        files = {'file': screenshot}
+        response = self.session.post(BASE_URL + "upload", files=files, timeout=5)
+        
+        if response.status_code == 200:
+            print("File uploaded successfully.")
+            
+        else:
+            print(response.json())
+            print("File upload failed.")
         
     def getUserInfo(self):
         
@@ -108,10 +130,20 @@ class FileSender:
         
 f = FileSender()
 
-input("First File")
+import time
 
-f.sendFile(r'/mnt/e/replays/Hunt Showdown/Map/testing/images/Lawson0C.jpg')
+def on_press(key):
+    if hasattr (key, 'vk') and key.vk == 97:
+        f.sendScreenshot(getScreenshotBytes(takeHuntScreenshot()))
+        print('screenshot taken')
+        
+    if key == keyboard.Key.f10:
+        print("Exiting")
+        exit()
 
-input("Next file")
-
-f.sendFile(r'/mnt/e/replays/Hunt Showdown/Map/testing/images/Lawson 1C.jpg')
+if __name__ == "__main__":
+    while True:
+        with keyboard.Listener(
+            on_press=on_press
+        ) as listener:
+            listener.join()
