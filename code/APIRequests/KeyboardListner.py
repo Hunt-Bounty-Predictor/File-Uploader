@@ -4,13 +4,14 @@ import queue
 from functools import partial
 
 class KeyboardListener:
-    def __init__(self):
+    def __init__(self, stopKey=Key.f10):
         self.keystrokes = queue.Queue()
         self.listener_thread = None
+        self.stopKey = stopKey
 
     def on_press(self, key):
         self.keystrokes.put(key)
-        if key == Key.f10:  # Stop execution
+        if key == self.stopKey:  # Stop execution
             return False
 
     def on_release(self, key):
@@ -23,6 +24,8 @@ class KeyboardListener:
 
         self.listener_thread = threading.Thread(target=listen)
         self.listener_thread.start()
+        
+        return self
 
     def stop_listener(self):
         if self.listener_thread:
