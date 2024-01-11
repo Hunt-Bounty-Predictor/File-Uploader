@@ -1,4 +1,8 @@
 images/*
+build/*
+build
+dist
+dist/*
 
 
 # Byte-compiled / optimized / DLL files
@@ -180,3 +184,4 @@ images/psd's/Normal 1 bounty.psd
 images/psd's/Ultra 1 bounty.psd
 images/psd's/ULTRA_2B.psd
 images/Ultra Lawson.jpg
+.env
