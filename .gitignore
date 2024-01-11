@@ -1,3 +1,6 @@
+images/*
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -159,3 +162,21 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 wsl/*
+userInfo.json
+code/__pycache__/errors.cpython-311.pyc
+images/compoundMask.jpg
+images/Lawson0C.jpg
+images/Lawson0CMasked.jpg
+images/lawsonGiven.jpg
+images/masked.jpg
+images/Normal 2B.png
+images/NORMAL_1B.png
+images/NORMAL_2B.png
+images/points.jpg
+images/Ultra Lawson.jpg
+images/defaultMaps/Lawson Delta.jpg
+images/defaultMaps/rawImages/Lawson Delta.jpg
+images/psd's/Normal 1 bounty.psd
+images/psd's/Ultra 1 bounty.psd
+images/psd's/ULTRA_2B.psd
+images/Ultra Lawson.jpg
