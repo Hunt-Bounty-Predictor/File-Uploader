@@ -36,7 +36,12 @@ class FileSender:
         self.BASE_URL = os.getenv("API_ENDPOINT")
         
         if self.BASE_URL == None:
-            raise Exception("API_ENDPOINT not set in .env file.")
+
+            "We want to try and keep the final executable to one file, \
+            so we will use a default value if the .env file is not found."
+            self. BASE_URL = "http://server.oms.bio/api/"
+
+            #raise Exception("API_ENDPOINT not set in .env file.")
             
         
         self.session = r.Session()
@@ -50,7 +55,6 @@ class FileSender:
     def getAPIKey(self) -> str:
         """
         Gets the API key from the server and stores it in the session headers.
-        
         """
         response = r.get(self.BASE_URL + "APIKey")
         
@@ -153,7 +157,7 @@ if __name__ == "__main__":
         
     f = FileSender()
     
-    f.sendFile(r"E:\replays\Hunt Showdown\Map\testing\images\Lawson Split.jpg")
+    #f.sendFile(r"E:\replays\Hunt Showdown\Map\testing\images\Lawson Split.jpg")
 
     """import time
 
