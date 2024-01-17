@@ -1,6 +1,6 @@
 from KeyboardListner import KeyboardListener
 from FileSender import FileSender
-from screenShotUtils import takeHuntScreenshot, getScreenshotBytes
+from ScreenShotUtils import takeHuntScreenshot, getScreenshotBytes
 from pynput.keyboard import Key
 
 if __name__ == "__main__":
