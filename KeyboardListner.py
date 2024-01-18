@@ -7,7 +7,32 @@ class KeyboardListener:
     def __init__(self, stopKey=Key.f10):
         self.keystrokes = queue.Queue()
         self.listener_thread = None
-        self.stopKey = stopKey
+        self.screenshotKey = self.selectKey("Please select the key you would like to use to take a screenshot.")
+        self.exitKey = self.selectKey("Please select the key you would like to use to exit the program.")
+
+    def captureKeyInput(self) -> Key:
+        selectedKey = None
+
+        def on_press(key):
+            selectedKey = key
+            return False
+        
+        with Listener(
+            on_press=on_press) as listener:
+            listener.join()
+
+        return selectedKey
+    
+    def selectKey(self, prompt: str) -> Key:
+        while True:
+            print(prompt)
+
+            key = self.captureKeyInput()
+
+            response = (f"You selected: {key}, is this correct? (y/n)")
+
+            if response.lower().strip() == "y":
+                return key
 
     def on_press(self, key):
         self.keystrokes.put(key)

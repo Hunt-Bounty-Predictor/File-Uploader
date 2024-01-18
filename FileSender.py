@@ -1,6 +1,6 @@
 import requests as r
 
-from screenShotUtils import takeHuntScreenshot, getScreenshotBytes
+from ScreenShotUtils import takeHuntScreenshot, getScreenshotBytes
 import io
 
 from pynput import keyboard
