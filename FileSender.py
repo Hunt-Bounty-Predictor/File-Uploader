@@ -29,7 +29,7 @@ f9
 
 
 #BASE_URL = 'http://localhost:8000/api/'
-#BASE_URL = 'http://192.168.40.178:53012/api/'
+#BASE_URL = 'http://192.168.40.156:53012/api/'
 class FileSender:
     def __init__(self):
         load_dotenv()
@@ -157,22 +157,5 @@ if __name__ == "__main__":
         
     f = FileSender()
     
-    #f.sendFile(r"E:\replays\Hunt Showdown\Map\testing\images\Lawson Split.jpg")
-
-    """import time
-
-    def on_press(key):
-        if hasattr (key, 'vk') and key.vk == 97:
-            f.sendScreenshot(getScreenshotBytes(takeHuntScreenshot()))
-            print('screenshot taken')
-            
-        if key == keyboard.Key.f10:
-            print("Exiting")
-            exit()
-
-    if __name__ == "__main__":
-        while True:
-            with keyboard.Listener(
-                on_press=on_press
-            ) as listener:
-                listener.join()"""
+    f.sendFile(r"E:\replays\Hunt Showdown\Map\Images\First Clue\8.jpg")
+    f.sendFile(r"E:\replays\Hunt Showdown\Map\Images\Second Clue\8.jpg")
