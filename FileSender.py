@@ -39,7 +39,7 @@ class FileSender:
 
             "We want to try and keep the final executable to one file, \
             so we will use a default value if the .env file is not found."
-            self. BASE_URL = "http://server.oms.bio/api/"
+            self. BASE_URL = "http://server.oms.bio:53012/api/"
 
             #raise Exception("API_ENDPOINT not set in .env file.")
             
