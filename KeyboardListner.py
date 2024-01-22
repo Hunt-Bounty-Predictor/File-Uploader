@@ -7,11 +7,38 @@ class KeyboardListener:
     def __init__(self, stopKey=Key.f10):
         self.keystrokes = queue.Queue()
         self.listener_thread = None
-        self.stopKey = stopKey
+        self.screenshotKey = self.selectKey("Please select the key you would like to use to take a screenshot.")
+        self.exitKey = self.selectKey("Please select the key you would like to use to exit the program.")
+
+    def captureKeyInput(self) -> Key:
+        selectedKey = None
+
+        def on_press(key):
+            nonlocal selectedKey
+            selectedKey = key
+            return False
+        
+        with Listener(
+            on_press=on_press) as listener:
+            
+            listener.join()
+
+        return selectedKey
+    
+    def selectKey(self, prompt: str) -> Key:
+        while True:
+            print(prompt)
+
+            key = self.captureKeyInput()
+
+            response = input(f"You selected: {key}, is this correct? (y/n)")
+
+            if response.lower().strip() == "y" or response.strip() == "":
+                return key
 
     def on_press(self, key):
         self.keystrokes.put(key)
-        if key == self.stopKey:  # Stop execution
+        if key == self.exitKey:  # Stop execution
             return False
 
     def on_release(self, key):
@@ -35,7 +62,13 @@ class KeyboardListener:
         return self.keystrokes
     
     def getNextKey(self):
-        return self.keystrokes.get()
+        return self.get_queue().get()
+    
+    def getScreenShotKey(self):
+        return self.screenshotKey
+    
+    def getExitKey(self):
+        return self.exitKey
     
 if __name__ == "__main__": # Example of how to use this class
     # Create an instance of the class
@@ -48,7 +81,7 @@ if __name__ == "__main__": # Example of how to use this class
     try:
         while True:
             key = keyboard_listener.getNextKey()
-            if key == Key.f10:
+            if key == keyboard_listener.exitKey:
                 print("Exiting")
                 break
             else:
