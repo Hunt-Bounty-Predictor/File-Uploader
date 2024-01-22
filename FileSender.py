@@ -59,32 +59,39 @@ class FileSender:
         response = r.get(self.BASE_URL + "APIKey")
         
         return response.json()['APIKey']
-
+    
+    def post(self, url, **kwargs):
+        response = self.session.post(self.BASE_URL + url, **kwargs)
         
+        if response.status_code == 200:
+            self.printUpload(response)
+            
+        else:
+            print(response.json())
+            print("File upload failed.")
+        
+        return response
+    
+    def printUpload(self, response : r.Response):
+        phaseInfo = response.json()['phase_info']
+        time = phaseInfo['time']
+        mapName = phaseInfo['map_name']
+        isPrimary = phaseInfo['is_primary']
+        count = phaseInfo['image_count']
+        
+        print(f"""You uploaded a file at {time} on map {mapName}. You have uploaded {count} images to this map. {"This is the first image you have uploaded to this map." if isPrimary else ""}""")
     
     def sendFile(self, filePAth: str) -> bool:
         with open(filePAth, 'rb') as file:
             
             files = {'file': file}
-            response = self.session.post(self.BASE_URL + "upload", files=files, timeout=5)
-            
-            if response.status_code == 200:
-                print("File uploaded successfully.")
-                
-            else:
-                print(response.json())
-                print("File upload failed.")
+            response = self.post("upload", files=files, timeout=5)
                 
     def sendScreenshot(self, screenshot : io.BytesIO):
         files = {'file': screenshot}
-        response = self.session.post(self.BASE_URL + "upload", files=files, timeout=5)
+        response = self.post("upload", files=files, timeout=5)
         
-        if response.status_code == 200:
-            print("File uploaded successfully.")
-            
-        else:
-            print(response.json())
-            print("File upload failed.")
+        
         
     def getUserInfo(self):
         
@@ -158,4 +165,5 @@ if __name__ == "__main__":
     f = FileSender()
     
     f.sendFile(r"E:\replays\Hunt Showdown\Map\Images\First Clue\8.jpg")
+    f.sendFile(r"E:\replays\Hunt Showdown\Map\Images\Second Clue\8.jpg")
     f.sendFile(r"E:\replays\Hunt Showdown\Map\Images\Second Clue\8.jpg")
