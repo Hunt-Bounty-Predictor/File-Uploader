@@ -19,7 +19,7 @@ class KeyboardListener:
             return False
         
         with Listener(
-            on_press=on_press) as listener:
+            on_press=on_press, suppress=True) as listener:
             
             listener.join()
 
@@ -36,13 +36,15 @@ class KeyboardListener:
             if response.lower().strip() == "y" or response.strip() == "":
                 return key
 
+            print("Please try again.\n")
+
     def on_press(self, key):
+        pass
+
+    def on_release(self, key):
         self.keystrokes.put(key)
         if key == self.exitKey:  # Stop execution
             return False
-
-    def on_release(self, key):
-        pass
 
     def start_listener(self):
         def listen():

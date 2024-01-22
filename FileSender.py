@@ -164,6 +164,6 @@ if __name__ == "__main__":
         
     f = FileSender()
     
-    f.sendFile(r"E:\replays\Hunt Showdown\Map\Images\First Clue\7.jpg")
-    f.sendFile(r"E:\replays\Hunt Showdown\Map\Images\Second Clue\7.jpg")
-    f.sendFile(r"E:\replays\Hunt Showdown\Map\Images\Third Clue\7.jpg")
+    f.sendFile(r"E:\replays\Hunt Showdown\Map\Images\First Clue\8.jpg")
+    f.sendFile(r"E:\replays\Hunt Showdown\Map\Images\Second Clue\8.jpg")
+    f.sendFile(r"E:\replays\Hunt Showdown\Map\Images\Second Clue\8.jpg")
